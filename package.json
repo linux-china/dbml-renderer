@@ -15,7 +15,7 @@
     "format": "npx prettier --write src/ package.json",
     "format:check": "npx prettier --check src/ package.json",
     "build": "tsc",
-    "bundle": "esbuild src/index.ts --bundle --platform=node --format=cjs --define:import.meta.url='importMetaUrl' --banner:js='const importMetaUrl=require(\"url\").pathToFileURL(__filename).href;' --outfile=dist/dbml-render-bundle.js",
+    "bundle": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/dbml-render-bundle.mjs --banner:js=\"import {createRequire as __cr} from 'node:module'; import {fileURLToPath as __f} from 'node:url';import {dirname as __d} from 'node:path';const require=__cr(import.meta.url);const __filename=__f(import.meta.url);const __dirname=__d(__filename);\"",
     "test": "ava"
   },
   "keywords": [],
