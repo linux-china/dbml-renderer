@@ -3,7 +3,7 @@
 import fs from "fs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { run } from "./api";
+import { renderDbml } from "./api";
 import { Format } from "./renderer";
 
 const args = yargs(hideBin(process.argv))
@@ -48,7 +48,7 @@ const args = yargs(hideBin(process.argv))
   .parseSync();
 
 try {
-  run(args.input, args.format).then(x=> args.output(x));
+    renderDbml(args.input, args.format).then(x=> args.output(x));
 } catch (e) {
   console.error((e as any).message || e);
   process.exit(1);
