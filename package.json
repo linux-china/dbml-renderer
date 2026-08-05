@@ -15,7 +15,7 @@
     "format": "npx prettier --write src/ package.json",
     "format:check": "npx prettier --check src/ package.json",
     "build": "tsc",
-    "bundle": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/dbml-render-bundle.mjs --banner:js=\"import {createRequire as __cr} from 'node:module'; import {fileURLToPath as __f} from 'node:url';import {dirname as __d} from 'node:path';const require=__cr(import.meta.url);const __filename=__f(import.meta.url);const __dirname=__d(__filename);\"",
+    "bundle": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/dbml-render-bundle.mjs",
     "test": "ava"
   },
   "keywords": [],
@@ -25,14 +25,14 @@
     "@types/node": "^20.19.4",
     "@types/yargs": "^17.0.35",
     "ava": "^6.4.0",
+    "esbuild": "^0.28.1",
     "peggy": "^4.2.0",
     "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "esbuild": "^0.28.1"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@aduh95/viz.js": "3.4.0",
+    "@viz-js/viz": "^3.28.0",
     "yargs": "^18.1.0",
     "zod": "^3.25.75"
   },
