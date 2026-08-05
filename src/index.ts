@@ -48,7 +48,7 @@ const args = yargs(hideBin(process.argv))
   .parseSync();
 
 try {
-  args.output(run(args.input, args.format));
+  run(args.input, args.format).then(x=> args.output(x));
 } catch (e) {
   console.error((e as any).message || e);
   process.exit(1);

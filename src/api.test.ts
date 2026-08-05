@@ -22,8 +22,8 @@ dbmlFiles.forEach(([dbmlFilename, dbmlFile]) => {
     join(testOutputDir, `${dbmlFilename}.${format}`);
 
   formats.forEach((format) => {
-    test(`${dbmlFile} can be converted to ${format}`, (t) => {
-      const output = run(input, format);
+    test(`${dbmlFile} can be converted to ${format}`, async (t) => {
+      const output = await run(input, format);
 
       writeFileSync(outputFile(format), output, "utf-8");
 

@@ -7,10 +7,11 @@ import {
 } from "./checker";
 import { fullName } from "./common";
 import { Cardinality, Column, Settings, Table, TableIndices } from "./types";
+import * as Viz from "@viz-js/viz";
 
 export type Format = "dot" | "svg";
 
-export const render = (input: NormalizedOutput, format: Format): string => {
+export const render = async (input: NormalizedOutput, format: Format): Promise<string> => {
   const dotString = dot(input);
 
   if (format === "dot") {
@@ -19,12 +20,11 @@ export const render = (input: NormalizedOutput, format: Format): string => {
     // script engine.
     return dotString;
   }
-  const vizRenderStringSync = require("@aduh95/viz.js/sync");
-
-  return vizRenderStringSync(dotString, {
-    engine: "dot",
-    format: format,
-  });
+  let viz = await Viz.instance();
+  return viz.renderString(dotString, {
+        engine: "dot",
+        format: format,
+      });
 };
 
 const dot = (input: NormalizedOutput): string => {
