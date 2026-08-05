@@ -9,6 +9,8 @@ import { fullName } from "./common";
 import { Cardinality, Column, Settings, Table, TableIndices } from "./types";
 import * as Viz from "@viz-js/viz";
 
+const vizPromise = Viz.instance();
+
 export type Format = "dot" | "svg";
 
 export const render = async (input: NormalizedOutput, format: Format): Promise<string> => {
@@ -20,8 +22,7 @@ export const render = async (input: NormalizedOutput, format: Format): Promise<s
     // script engine.
     return dotString;
   }
-  let viz = await Viz.instance();
-  return viz.renderString(dotString, {
+  return (await vizPromise).renderString(dotString, {
         engine: "dot",
         format: format,
       });
