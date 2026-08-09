@@ -1,11 +1,13 @@
-File = all:DBML+ { return all.filter(e => e); }
+// A declaration may expand to several entities (e.g. a braced Ref block), hence the flattening.
+File = all:DBML+ { return all.filter(e => e).flat(); }
 
 DBML = _ declaration:(
   Comment
   / Project
   / StickyNote
-  / Table
   / TableGroup
+  / Table
+  / Records
   / Ref
   / Enum
   / NewLine {}
@@ -14,8 +16,9 @@ DBML = _ declaration:(
 Project = "Project"i _ name:ProjectName? __ "{" __ options:Options __ "}" { return { type: "project", name, options } }
 ProjectName = Name
 
-StickyNote = "Note"i _ name:StickyNoteName __ "{" __ note:String __ "}" { return { type: "note", name, note } }
+StickyNote = "Note"i _ name:StickyNoteName note:NoteValue { return { type: "note", name, note } }
 StickyNoteName = Name
+NoteValue = _ ":" _ note:String { return note; } / __ "{" __ note:String __ "}" { return note; }
 
 Schema = Name
 
@@ -27,6 +30,7 @@ TableItem =
   Column
   / Indices
   / Checks
+  / TableRecords
   / option:Option { return { type: "option", option }; }
 TableSettings = Settings
 
@@ -51,6 +55,18 @@ Checks = "Checks"i __ "{" __ checks:ChecksList __ "}" { return { type: "checks",
 ChecksList = (head:CheckItem tail:(EOL __ check:CheckItem { return check; })* { return [head, ...tail]; })?
 CheckItem = expression:Function _ settings:Settings? { return { expression, settings } }
 
+Records = "Records"i _ name:SchemaElementName _ config:RecordsConfig { return { type: "records", ...name, ...config }; }
+TableRecords = "Records"i _ config:RecordsConfig { return { type: "records", ...config }; }
+RecordsConfig = columns:RecordsColumns? __ "{" __ rows:RecordsRows __ "}" { return { columns, rows }; }
+RecordsColumns = "(" _ columns:(head:ColumnName tail:(_ "," _ name:ColumnName { return name; })* { return [head, ...tail]; })? _ ")" { return columns; }
+RecordsRows = rows:(head:RecordsRow tail:(EOL __ row:RecordsRow { return row; })* { return [head, ...tail]; })? { return rows || []; }
+// A trailing or repeated comma leaves the corresponding value unset.
+RecordsRow = head:RecordsValue tail:(_ "," _ value:RecordsValue? { return value; })* { return [head, ...tail]; }
+RecordsValue = String / Function / RecordsNumber / RecordsNull / RecordsIdentifier
+RecordsNumber = value:$("-"? [0-9]+ ("." [0-9]+)?) !NameChar { return value; }
+RecordsNull = "null"i !NameChar { return null; }
+RecordsIdentifier = $(RawName ("." RawName)*)
+
 TableGroup = "TableGroup"i _ name:Name _ settings:TableGroupSettings? __ "{" __ items:TableGroupItems __ "}"
   { return { type: "group", name, items, settings }; }
 TableGroupItems = (head:TableGroupItem tail:(EOL __ item:TableGroupItem { return item; })* { return [head, ...tail]; })?
@@ -59,7 +75,12 @@ TableGroupItem =
   / name:SchemaElementName { return {type: "table", ...name} }
 TableGroupSettings = Settings
 
-Ref = "Ref"i _ name:Name? _ ":" _ from:RefFull _ cardinality:Cardinality _ to:RefFull _ settings:Settings? { return { type: "ref", cardinality, from, to, settings }; }
+Ref = "Ref"i _ name:RefName? refs:(ShortRef / LongRef) { return refs; }
+RefName = Name
+ShortRef = _ ":" _ ref:RefBody { return ref; }
+LongRef = __ "{" __ refs:RefBodies __ "}" { return refs; }
+RefBodies = refs:(head:RefBody tail:(EOL __ ref:RefBody { return ref; })* { return [head, ...tail]; })? { return refs || []; }
+RefBody = from:RefFull _ cardinality:Cardinality _ to:RefFull _ settings:Settings? { return { type: "ref", cardinality, from, to, settings }; }
 RefFull = schemaTable:(n:SchemaAndName _ '.' { return n; } / n:SimpleName _ '.' { return n; }) _ columns:RefColumns { return { ...schemaTable, columns } }
 RefColumns =
   (name:ColumnName { return [name]; })
@@ -78,7 +99,8 @@ SchemaAndName = schema:Schema _ "." _ name:Name { return {schema, name}; }
 SimpleName = name:Name { return {schema: null, name}; }
 
 Name = RawName / QuotedName
-RawName = $[a-zA-Z0-9_]+
+RawName = $NameChar+
+NameChar = [a-zA-Z0-9_]
 QuotedName = '"' content:$[^"\n\r]* '"' { return content; }
 
 String = MultiLineString / SingleQuotedString / DoubleQuotedString
@@ -97,7 +119,9 @@ Settings = "[" pairs:SettingsPairs "]" { return pairs; }
 SettingsPairs = (head:Setting tail:(_ "," _ setting:Setting _ { return setting; })* { return [head, ...tail].reduce((a, b) => Object.assign(a,b), {}); })?
 Setting = key:SettingKey _ value:(":" _ v:SettingValue { return v; })? { return {[key]: value}; }
 SettingKey = [^,\]:]+ { return text().trim().toLowerCase(); }
-SettingValue = String / Function / ([^,\]]+ { return text().trim(); })
+// Parenthesised parts are consumed as a whole so that commas inside them (e.g. in the
+// composite column list of an inline ref) don't terminate the value.
+SettingValue = String / Function / (("(" [^)]* ")" / [^,\]])+ { return text().trim(); })
 
 Function = '`' [^`]* '`' { return text(); }
 
