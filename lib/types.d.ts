@@ -122,6 +122,14 @@ export declare const TableChecks: z.ZodObject<{
     }[];
 }>;
 export type TableChecks = z.infer<typeof TableChecks>;
+export declare const TableRecords: z.ZodObject<{
+    type: z.ZodLiteral<"records">;
+}, "strip", z.ZodTypeAny, {
+    type: "records";
+}, {
+    type: "records";
+}>;
+export type TableRecords = z.infer<typeof TableRecords>;
 export declare const Table: z.ZodObject<{
     type: z.ZodLiteral<"table">;
     schema: z.ZodNullable<z.ZodString>;
@@ -208,6 +216,12 @@ export declare const Table: z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"records">;
+    }, "strip", z.ZodTypeAny, {
+        type: "records";
+    }, {
+        type: "records";
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
@@ -239,6 +253,8 @@ export declare const Table: z.ZodObject<{
             settings: Record<string, string | null>;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }, {
     type: "table";
@@ -269,6 +285,8 @@ export declare const Table: z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }>;
 export type Table = z.infer<typeof Table>;
@@ -506,6 +524,197 @@ export declare const Ref: z.ZodObject<{
     };
 }>;
 export type Ref = z.infer<typeof Ref>;
+export declare const DepEndpoint: z.ZodObject<{
+    schema: z.ZodNullable<z.ZodString>;
+    name: z.ZodString;
+    column: z.ZodNullable<z.ZodString>;
+    parts: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    column: string | null;
+    schema: string | null;
+    parts: string[];
+}, {
+    name: string;
+    column: string | null;
+    schema: string | null;
+    parts: string[];
+}>;
+export type DepEndpoint = z.infer<typeof DepEndpoint>;
+export declare const DepEdge: z.ZodObject<{
+    from: z.ZodObject<{
+        schema: z.ZodNullable<z.ZodString>;
+        name: z.ZodString;
+        column: z.ZodNullable<z.ZodString>;
+        parts: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    }, {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    }>;
+    to: z.ZodObject<{
+        schema: z.ZodNullable<z.ZodString>;
+        name: z.ZodString;
+        column: z.ZodNullable<z.ZodString>;
+        parts: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    }, {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    }>;
+    settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+}, "strip", z.ZodTypeAny, {
+    settings: Record<string, string | null>;
+    from: {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    };
+    to: {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    };
+}, {
+    settings: Record<string, string | null> | null;
+    from: {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    };
+    to: {
+        name: string;
+        column: string | null;
+        schema: string | null;
+        parts: string[];
+    };
+}>;
+export type DepEdge = z.infer<typeof DepEdge>;
+export declare const Dep: z.ZodObject<{
+    type: z.ZodLiteral<"dep">;
+    name: z.ZodNullable<z.ZodString>;
+    settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    options: z.ZodRecord<z.ZodString, z.ZodString>;
+    edges: z.ZodArray<z.ZodObject<{
+        from: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        to: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    }, "strip", z.ZodTypeAny, {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }, {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null>;
+    edges: {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null> | null;
+    edges: {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}>;
+export type Dep = z.infer<typeof Dep>;
 export declare const Entity: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"comment">;
     comment: z.ZodString;
@@ -625,6 +834,12 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"records">;
+    }, "strip", z.ZodTypeAny, {
+        type: "records";
+    }, {
+        type: "records";
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
@@ -656,6 +871,8 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null>;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }, {
     type: "table";
@@ -686,6 +903,8 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }>, z.ZodObject<{
     type: z.ZodLiteral<"group">;
@@ -860,6 +1079,120 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
         columns: string[];
         schema: string | null;
     };
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"dep">;
+    name: z.ZodNullable<z.ZodString>;
+    settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    options: z.ZodRecord<z.ZodString, z.ZodString>;
+    edges: z.ZodArray<z.ZodObject<{
+        from: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        to: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    }, "strip", z.ZodTypeAny, {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }, {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null>;
+    edges: {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null> | null;
+    edges: {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"records">;
+}, "strip", z.ZodTypeAny, {
+    type: "records";
+}, {
+    type: "records";
 }>]>;
 export type Entity = z.infer<typeof Entity>;
 export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
@@ -981,6 +1314,12 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"records">;
+    }, "strip", z.ZodTypeAny, {
+        type: "records";
+    }, {
+        type: "records";
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
@@ -1012,6 +1351,8 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null>;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }, {
     type: "table";
@@ -1042,6 +1383,8 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             settings: Record<string, string | null> | null;
             expression: string;
         }[];
+    } | {
+        type: "records";
     })[];
 }>, z.ZodObject<{
     type: z.ZodLiteral<"group">;
@@ -1216,6 +1559,120 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         columns: string[];
         schema: string | null;
     };
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"dep">;
+    name: z.ZodNullable<z.ZodString>;
+    settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    options: z.ZodRecord<z.ZodString, z.ZodString>;
+    edges: z.ZodArray<z.ZodObject<{
+        from: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        to: z.ZodObject<{
+            schema: z.ZodNullable<z.ZodString>;
+            name: z.ZodString;
+            column: z.ZodNullable<z.ZodString>;
+            parts: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }, {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        }>;
+        settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
+    }, "strip", z.ZodTypeAny, {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }, {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null>;
+    edges: {
+        settings: Record<string, string | null>;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}, {
+    type: "dep";
+    options: Record<string, string>;
+    name: string | null;
+    settings: Record<string, string | null> | null;
+    edges: {
+        settings: Record<string, string | null> | null;
+        from: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+        to: {
+            name: string;
+            column: string | null;
+            schema: string | null;
+            parts: string[];
+        };
+    }[];
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"records">;
+}, "strip", z.ZodTypeAny, {
+    type: "records";
+}, {
+    type: "records";
 }>]>, "many">;
 export type Output = z.infer<typeof Output>;
 export {};

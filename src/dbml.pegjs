@@ -9,6 +9,7 @@ DBML = _ declaration:(
   / Table
   / Records
   / Ref
+  / Dep
   / Enum
   / NewLine {}
 ) { return declaration }
@@ -86,6 +87,44 @@ RefColumns =
   (name:ColumnName { return [name]; })
   / CompositeKey
 Cardinality = '-' / '<>' / '>' / '<'
+
+// Data lineage: a dependency edge always points from the upstream endpoint to
+// the downstream one, so `a <- b` is stored as the edge `b -> a`.
+Dep = "Dep"i _ name:DepName? _ settings:DepSettings? body:(ShortDep / LongDep)
+  { return { type: "dep", name, settings, ...body }; }
+DepName = Name
+DepSettings = Settings
+ShortDep = _ ":" _ edge:DepEdge { return { edges: [edge], options: {} }; }
+LongDep = __ "{" __ items:DepItems __ "}"
+  {
+    return {
+      edges: items.filter(i => i.type === "edge").map(i => i.edge),
+      options: items.filter(i => i.type === "option").reduce((a, b) => Object.assign(a, b.option), {}),
+    };
+  }
+DepItems = items:(head:DepItem tail:(EOL __ item:DepItem { return item; })* { return [head, ...tail]; })? { return items || []; }
+DepItem =
+  edge:DepEdge { return { type: "edge", edge }; }
+  / option:DepOption { return { type: "option", option }; }
+DepEdge = left:DepEndpoint _ direction:DepDirection _ right:DepEndpoint _ settings:Settings?
+  {
+    const [from, to] = direction === "->" ? [left, right] : [right, left];
+    return { from, to, settings };
+  }
+DepDirection = "->" / "<-"
+// `a.b` is ambiguous (schema.table vs. table.column); the raw parts are kept so
+// that consumers can disambiguate against the tables they know about.
+DepEndpoint = head:Name tail:(_ "." _ name:Name { return name; })*
+  {
+    const parts = [head, ...tail];
+    const [schema, name, column] =
+      parts.length >= 3 ? [parts[0], parts[1], parts[2]]
+      : parts.length === 2 ? [null, parts[0], parts[1]]
+      : [null, parts[0], null];
+    return { schema, name, column, parts };
+  }
+DepOption = key:OptionKey _ ":" _ value:DepOptionValue { return { [key]: value }; }
+DepOptionValue = String / value:$(!"//" [^\n\r])+ { return value.trim(); }
 
 CompositeKey = "(" _ columns:(head:ColumnName tail:(_ "," _ name:ColumnName { return name; })* { return [head, ...tail]; } )? _ ")" { return columns; }
 

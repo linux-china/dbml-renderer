@@ -62,13 +62,25 @@ export const TableChecks = z.object({
 });
 export type TableChecks = z.infer<typeof TableChecks>;
 
+export const TableRecords = z.object({
+  type: z.literal("records"),
+});
+export type TableRecords = z.infer<typeof TableRecords>;
+
 export const Table = z.object({
   type: z.literal("table"),
   schema: z.string().nullable(),
   name: z.string(),
   alias: z.string().nullable(),
   items: z.array(
-    z.union([Comment, Column, TableOption, TableIndices, TableChecks]),
+    z.union([
+      Comment,
+      Column,
+      TableOption,
+      TableIndices,
+      TableChecks,
+      TableRecords,
+    ]),
   ),
   settings: Settings.nullable().transform((v) => v || {}),
 });
@@ -94,11 +106,6 @@ export const TableGroup = z.object({
   settings: Settings.nullable().transform((v) => v || {}),
 });
 export type TableGroup = z.infer<typeof TableGroup>;
-
-export const TableRecords = z.object({
-  type: z.literal("records"),
-});
-export type TableRecords = z.infer<typeof TableRecords>;
 
 export const EnumValue = z.object({
   type: z.literal("value"),
@@ -139,6 +146,32 @@ export const Ref = z.object({
 });
 export type Ref = z.infer<typeof Ref>;
 
+export const DepEndpoint = z.object({
+  schema: z.string().nullable(),
+  name: z.string(),
+  column: z.string().nullable(),
+  // The endpoint as written, e.g. ["public", "orders", "amount"].
+  parts: z.array(z.string()),
+});
+export type DepEndpoint = z.infer<typeof DepEndpoint>;
+
+export const DepEdge = z.object({
+  // `from` is always the upstream endpoint, `to` the downstream one.
+  from: DepEndpoint,
+  to: DepEndpoint,
+  settings: Settings.nullable().transform((v) => v || {}),
+});
+export type DepEdge = z.infer<typeof DepEdge>;
+
+export const Dep = z.object({
+  type: z.literal("dep"),
+  name: z.string().nullable(),
+  settings: Settings.nullable().transform((v) => v || {}),
+  options: Options,
+  edges: z.array(DepEdge),
+});
+export type Dep = z.infer<typeof Dep>;
+
 export const Entity = z.union([
   Comment,
   Project,
@@ -147,6 +180,7 @@ export const Entity = z.union([
   TableGroup,
   Enum,
   Ref,
+  Dep,
   TableRecords,
 ]);
 export type Entity = z.infer<typeof Entity>;
