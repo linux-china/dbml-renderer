@@ -16,7 +16,7 @@
     "format:check": "npx prettier --check src/ package.json",
     "build": "tsc",
     "bundle": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/dbml-render-bundle.mjs",
-    "api-bundle": "esbuild src/api.ts --bundle --platform=node --format=esm --outfile=dist/dbml-api-bundle.mjs",
+    "api-bundle": "esbuild src/api.ts --bundle --platform=node --format=esm --outfile=dist/dbml-render-api-bundle.mjs",
     "test": "ava"
   },
   "keywords": [],
