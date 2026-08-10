@@ -56,17 +56,35 @@ Checks = "Checks"i __ "{" __ checks:ChecksList __ "}" { return { type: "checks",
 ChecksList = (head:CheckItem tail:(EOL __ check:CheckItem { return check; })* { return [head, ...tail]; })?
 CheckItem = expression:Function _ settings:Settings? { return { expression, settings } }
 
-Records = "Records"i _ name:SchemaElementName _ config:RecordsConfig { return { type: "records", ...name, ...config }; }
-TableRecords = "Records"i _ config:RecordsConfig { return { type: "records", ...config }; }
-RecordsConfig = columns:RecordsColumns? __ "{" __ rows:RecordsRows __ "}" { return { columns, rows }; }
-RecordsColumns = "(" _ columns:(head:ColumnName tail:(_ "," _ name:ColumnName { return name; })* { return [head, ...tail]; })? _ ")" { return columns; }
+// Data samples. An implicit column list is only allowed for records nested in a
+// table, where it stands for all of the table's columns in definition order.
+Records = "Records"i _ name:SchemaElementName _ columns:RecordsColumns __ "{" __ rows:RecordsRows __ "}"
+  { return { type: "records", ...name, columns, rows }; }
+TableRecords = "Records"i _ columns:RecordsColumns? __ "{" __ rows:RecordsRows __ "}"
+  { return { type: "records", columns, rows }; }
+RecordsColumns = "(" _ columns:(head:ColumnName tail:(_ "," _ name:ColumnName { return name; })* { return [head, ...tail]; })? _ ")" { return columns || []; }
 RecordsRows = rows:(head:RecordsRow tail:(EOL __ row:RecordsRow { return row; })* { return [head, ...tail]; })? { return rows || []; }
-// A trailing or repeated comma leaves the corresponding value unset.
-RecordsRow = head:RecordsValue tail:(_ "," _ value:RecordsValue? { return value; })* { return [head, ...tail]; }
-RecordsValue = String / Function / RecordsNumber / RecordsNull / RecordsIdentifier
-RecordsNumber = value:$("-"? [0-9]+ ("." [0-9]+)?) !NameChar { return value; }
-RecordsNull = "null"i !NameChar { return null; }
+// CSV-style rows. An omitted field (a leading, trailing or repeated comma)
+// leaves the corresponding value unset, which means null.
+RecordsRow =
+  head:RecordsValue tail:RecordsField* { return [head, ...tail]; }
+  / tail:RecordsField+ { return [{ kind: "null", value: null }, ...tail]; }
+RecordsField = _ "," _ value:RecordsValue? { return value ?? { kind: "null", value: null }; }
+RecordsValue =
+  value:String { return { kind: "string", value }; }
+  / value:RecordsExpression { return { kind: "expression", value }; }
+  / value:RecordsNumber { return { kind: "number", value }; }
+  / value:RecordsBoolean { return { kind: "boolean", value }; }
+  / RecordsNull
+  // A bare identifier, typically an enum constant such as `Status.active`.
+  / value:RecordsIdentifier { return { kind: "identifier", value }; }
+// The raw literal is kept as written so that neither precision nor notation is lost.
+RecordsNumber = value:$([+-]? ([0-9]+ ("." [0-9]*)? / "." [0-9]+) ([eE] [+-]? [0-9]+)?) !NameChar { return value; }
+RecordsBoolean = value:("true"i { return true; } / "false"i { return false; }) !NameChar { return value; }
+RecordsNull = "null"i !NameChar { return { kind: "null", value: null }; }
 RecordsIdentifier = $(RawName ("." RawName)*)
+// Unlike Function, the surrounding backticks are dropped: the kind already says it's an expression.
+RecordsExpression = "`" content:$[^`]* "`" { return content; }
 
 TableGroup = "TableGroup"i _ name:Name _ settings:TableGroupSettings? __ "{" __ items:TableGroupItems __ "}"
   { return { type: "group", name, items, settings }; }

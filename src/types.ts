@@ -62,10 +62,43 @@ export const TableChecks = z.object({
 });
 export type TableChecks = z.infer<typeof TableChecks>;
 
+// A single field of a data sample row. `kind` reflects how the value was
+// written, not the type of the column it ends up in.
+export const RecordValue = z.discriminatedUnion("kind", [
+  // A quoted string, without its quotes.
+  z.object({ kind: z.literal("string"), value: z.string() }),
+  // The literal as written (e.g. "-100", "1.5e10"), so that neither precision
+  // nor notation is lost.
+  z.object({ kind: z.literal("number"), value: z.string() }),
+  z.object({ kind: z.literal("boolean"), value: z.boolean() }),
+  // An explicit `null`, or a field left empty by an omitted value.
+  z.object({ kind: z.literal("null"), value: z.null() }),
+  // A backtick-quoted database expression, without its backticks.
+  z.object({ kind: z.literal("expression"), value: z.string() }),
+  // A bare identifier, typically an enum constant such as `Status.active`.
+  z.object({ kind: z.literal("identifier"), value: z.string() }),
+]);
+export type RecordValue = z.infer<typeof RecordValue>;
+
+export const RecordRow = z.array(RecordValue);
+export type RecordRow = z.infer<typeof RecordRow>;
+
+// Data samples declared inside a table. A null column list means the records
+// use all of the table's columns in definition order.
 export const TableRecords = z.object({
   type: z.literal("records"),
+  columns: z.array(z.string()).nullable(),
+  rows: z.array(RecordRow),
 });
 export type TableRecords = z.infer<typeof TableRecords>;
+
+// Data samples declared outside a table, which must name their columns.
+export const Records = TableRecords.extend({
+  schema: z.string().nullable(),
+  name: z.string(),
+  columns: z.array(z.string()),
+});
+export type Records = z.infer<typeof Records>;
 
 export const Table = z.object({
   type: z.literal("table"),
@@ -181,7 +214,7 @@ export const Entity = z.union([
   Enum,
   Ref,
   Dep,
-  TableRecords,
+  Records,
 ]);
 export type Entity = z.infer<typeof Entity>;
 
