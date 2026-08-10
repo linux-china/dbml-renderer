@@ -95,6 +95,11 @@ export const TableGroup = z.object({
 });
 export type TableGroup = z.infer<typeof TableGroup>;
 
+export const TableRecords = z.object({
+  type: z.literal("records"),
+});
+export type TableRecords = z.infer<typeof TableRecords>;
+
 export const EnumValue = z.object({
   type: z.literal("value"),
   name: z.string(),
@@ -142,6 +147,7 @@ export const Entity = z.union([
   TableGroup,
   Enum,
   Ref,
+  TableRecords,
 ]);
 export type Entity = z.infer<typeof Entity>;
 
