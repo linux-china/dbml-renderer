@@ -23,11 +23,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.19.4",
+    "@types/node": "^22.20.3",
     "@types/yargs": "^17.0.35",
-    "ava": "^6.4.0",
-    "esbuild": "^0.28.1",
-    "peggy": "^4.2.0",
+    "ava": "^8.0.1",
+    "esbuild": "^0.28.2",
+    "peggy": "^5.1.0",
     "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
