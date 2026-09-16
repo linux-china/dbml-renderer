@@ -64,3 +64,27 @@ cp .test-output/* examples/
 
 To aid the visual inspection, you can open `.compare-test-output.html` to
 compare side-by-side each generated SVG.
+
+## Changes
+
+* Use `@viz-js/viz`
+* Async mode
+* API Bundle support
+
+### Bundle
+
+Bundle dbml-render as standalone.js with esbuild: 
+
+```shell
+npm run bundle
+```
+
+Then you can use Node, Bun or Deno to run the bundle JavaScript file.
+
+```shell
+cat demo.dbml | bun dist/dbml-render-bundle.mjs -i - -o -
+```
+
+## Todo
+
+DBML syntax compatible
