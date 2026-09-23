@@ -6,10 +6,10 @@ export const Comment = z.object({
 });
 export type Comment = z.infer<typeof Comment>;
 
-export const Settings = z.record(z.string().nullable());
+export const Settings = z.record(z.string(), z.string().nullable());
 export type Settings = z.infer<typeof Settings>;
 
-export const Options = z.record(z.string());
+export const Options = z.record(z.string(), z.string());
 export type Options = z.infer<typeof Options>;
 
 export const Project = z.object({
@@ -36,7 +36,7 @@ export type Column = z.infer<typeof Column>;
 
 export const TableOption = z.object({
   type: z.literal("option"),
-  option: z.record(z.string()),
+  option: z.record(z.string(), z.string()),
 });
 export type TableOption = z.infer<typeof TableOption>;
 
@@ -128,7 +128,7 @@ export type TableRef = z.infer<typeof TableRef>;
 
 export const TableGroupOption = z.object({
   type: z.literal("option"),
-  option: z.record(z.string()),
+  option: z.record(z.string(), z.string()),
 });
 export type TableGroupOption = z.infer<typeof TableGroupOption>;
 
