@@ -23,18 +23,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.20.3",
+    "@types/node": "^26.6.2",
     "@types/yargs": "^17.0.35",
     "ava": "^8.0.1",
     "esbuild": "^0.28.2",
     "peggy": "^5.1.0",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@viz-js/viz": "^3.30.0",
-    "yargs": "^18.1.0",
+    "yargs": "^18.2.0",
     "zod": "^3.25.75"
   },
   "bugs": {
