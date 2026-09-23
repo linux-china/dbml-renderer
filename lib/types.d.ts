@@ -20,12 +20,12 @@ export declare const Project: z.ZodObject<{
     options: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>, Record<string, string>, Record<string, string> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "project";
-    options: Record<string, string>;
     name: string | null;
+    options: Record<string, string>;
 }, {
     type: "project";
-    options: Record<string, string> | null;
     name: string | null;
+    options: Record<string, string> | null;
 }>;
 export type Project = z.infer<typeof Project>;
 export declare const StickyNote: z.ZodObject<{
@@ -76,23 +76,23 @@ export declare const TableIndices: z.ZodObject<{
         columns: z.ZodArray<z.ZodString, "many">;
         settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
     }, "strip", z.ZodTypeAny, {
+        columns: string[];
         settings: Record<string, string | null>;
-        columns: string[];
     }, {
-        settings: Record<string, string | null> | null;
         columns: string[];
+        settings: Record<string, string | null> | null;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "indices";
     indices: {
-        settings: Record<string, string | null>;
         columns: string[];
+        settings: Record<string, string | null>;
     }[];
 }, {
     type: "indices";
     indices: {
-        settings: Record<string, string | null> | null;
         columns: string[];
+        settings: Record<string, string | null> | null;
     }[];
 }>;
 export type TableIndices = z.infer<typeof TableIndices>;
@@ -102,23 +102,23 @@ export declare const TableChecks: z.ZodObject<{
         expression: z.ZodString;
         settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
     }, "strip", z.ZodTypeAny, {
+        expression: string;
         settings: Record<string, string | null>;
-        expression: string;
     }, {
-        settings: Record<string, string | null> | null;
         expression: string;
+        settings: Record<string, string | null> | null;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "checks";
     checks: {
-        settings: Record<string, string | null>;
         expression: string;
+        settings: Record<string, string | null>;
     }[];
 }, {
     type: "checks";
     checks: {
-        settings: Record<string, string | null> | null;
         expression: string;
+        settings: Record<string, string | null> | null;
     }[];
 }>;
 export type TableChecks = z.infer<typeof TableChecks>;
@@ -126,112 +126,112 @@ export declare const RecordValue: z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"string">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "string";
+    value: string;
 }, {
-    value: string;
     kind: "string";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"number">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "number";
+    value: string;
 }, {
-    value: string;
     kind: "number";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"boolean">;
     value: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
-    value: boolean;
     kind: "boolean";
+    value: boolean;
 }, {
-    value: boolean;
     kind: "boolean";
+    value: boolean;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"null">;
     value: z.ZodNull;
 }, "strip", z.ZodTypeAny, {
-    value: null;
     kind: "null";
+    value: null;
 }, {
-    value: null;
     kind: "null";
+    value: null;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"expression">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "expression";
+    value: string;
 }, {
-    value: string;
     kind: "expression";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"identifier">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "identifier";
+    value: string;
 }, {
-    value: string;
     kind: "identifier";
+    value: string;
 }>]>;
 export type RecordValue = z.infer<typeof RecordValue>;
 export declare const RecordRow: z.ZodArray<z.ZodDiscriminatedUnion<"kind", [z.ZodObject<{
     kind: z.ZodLiteral<"string">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "string";
+    value: string;
 }, {
-    value: string;
     kind: "string";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"number">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "number";
+    value: string;
 }, {
-    value: string;
     kind: "number";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"boolean">;
     value: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
-    value: boolean;
     kind: "boolean";
+    value: boolean;
 }, {
-    value: boolean;
     kind: "boolean";
+    value: boolean;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"null">;
     value: z.ZodNull;
 }, "strip", z.ZodTypeAny, {
-    value: null;
     kind: "null";
+    value: null;
 }, {
-    value: null;
     kind: "null";
+    value: null;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"expression">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "expression";
+    value: string;
 }, {
-    value: string;
     kind: "expression";
+    value: string;
 }>, z.ZodObject<{
     kind: z.ZodLiteral<"identifier">;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     kind: "identifier";
+    value: string;
 }, {
-    value: string;
     kind: "identifier";
+    value: string;
 }>]>, "many">;
 export type RecordRow = z.infer<typeof RecordRow>;
 export declare const TableRecords: z.ZodObject<{
@@ -241,100 +241,100 @@ export declare const TableRecords: z.ZodObject<{
         kind: z.ZodLiteral<"string">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "string";
+        value: string;
     }, {
-        value: string;
         kind: "string";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"number">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "number";
+        value: string;
     }, {
-        value: string;
         kind: "number";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"boolean">;
         value: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"null">;
         value: z.ZodNull;
     }, "strip", z.ZodTypeAny, {
-        value: null;
         kind: "null";
+        value: null;
     }, {
-        value: null;
         kind: "null";
+        value: null;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"expression">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "expression";
+        value: string;
     }, {
-        value: string;
         kind: "expression";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"identifier">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "identifier";
+        value: string;
     }, {
-        value: string;
         kind: "identifier";
+        value: string;
     }>]>, "many">, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "records";
     columns: string[] | null;
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
 }, {
     type: "records";
     columns: string[] | null;
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
 }>;
 export type TableRecords = z.infer<typeof TableRecords>;
@@ -344,56 +344,56 @@ export declare const Records: z.ZodObject<{
         kind: z.ZodLiteral<"string">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "string";
+        value: string;
     }, {
-        value: string;
         kind: "string";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"number">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "number";
+        value: string;
     }, {
-        value: string;
         kind: "number";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"boolean">;
         value: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"null">;
         value: z.ZodNull;
     }, "strip", z.ZodTypeAny, {
-        value: null;
         kind: "null";
+        value: null;
     }, {
-        value: null;
         kind: "null";
+        value: null;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"expression">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "expression";
+        value: string;
     }, {
-        value: string;
         kind: "expression";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"identifier">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "identifier";
+        value: string;
     }, {
-        value: string;
         kind: "identifier";
+        value: string;
     }>]>, "many">, "many">;
 } & {
     schema: z.ZodNullable<z.ZodString>;
@@ -401,52 +401,52 @@ export declare const Records: z.ZodObject<{
     columns: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }>;
 export type Records = z.infer<typeof Records>;
 export declare const Table: z.ZodObject<{
@@ -493,23 +493,23 @@ export declare const Table: z.ZodObject<{
             columns: z.ZodArray<z.ZodString, "many">;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            columns: string[];
             settings: Record<string, string | null>;
-            columns: string[];
         }, {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"checks">;
@@ -517,23 +517,23 @@ export declare const Table: z.ZodObject<{
             expression: z.ZodString;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            expression: string;
             settings: Record<string, string | null>;
-            expression: string;
         }, {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"records">;
@@ -542,108 +542,107 @@ export declare const Table: z.ZodObject<{
             kind: z.ZodLiteral<"string">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "string";
+            value: string;
         }, {
-            value: string;
             kind: "string";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"number">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "number";
+            value: string;
         }, {
-            value: string;
             kind: "number";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"boolean">;
             value: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"null">;
             value: z.ZodNull;
         }, "strip", z.ZodTypeAny, {
-            value: null;
             kind: "null";
+            value: null;
         }, {
-            value: null;
             kind: "null";
+            value: null;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"expression">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "expression";
+            value: string;
         }, {
-            value: string;
             kind: "expression";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"identifier">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "identifier";
+            value: string;
         }, {
-            value: string;
             kind: "identifier";
+            value: string;
         }>]>, "many">, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null>;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -659,43 +658,43 @@ export declare const Table: z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null> | null;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -711,38 +710,39 @@ export declare const Table: z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null> | null;
 }>;
 export type Table = z.infer<typeof Table>;
 export declare const TableRef: z.ZodObject<{
@@ -751,12 +751,12 @@ export declare const TableRef: z.ZodObject<{
     name: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     type: "table";
-    name: string;
     schema: string | null;
+    name: string;
 }, {
     type: "table";
-    name: string;
     schema: string | null;
+    name: string;
 }>;
 export type TableRef = z.infer<typeof TableRef>;
 export declare const TableGroupOption: z.ZodObject<{
@@ -788,12 +788,12 @@ export declare const TableGroup: z.ZodObject<{
         name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }>, z.ZodObject<{
         type: z.ZodLiteral<"option">;
         option: z.ZodRecord<z.ZodString, z.ZodString>;
@@ -808,33 +808,33 @@ export declare const TableGroup: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null>;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null> | null;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null> | null;
 }>;
 export type TableGroup = z.infer<typeof TableGroup>;
 export declare const EnumValue: z.ZodObject<{
@@ -879,8 +879,8 @@ export declare const Enum: z.ZodObject<{
     }>]>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -891,8 +891,8 @@ export declare const Enum: z.ZodObject<{
     })[];
 }, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -910,13 +910,13 @@ declare const ColumnRef: z.ZodObject<{
     name: z.ZodString;
     columns: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
+    schema: string | null;
     name: string;
     columns: string[];
-    schema: string | null;
 }, {
+    schema: string | null;
     name: string;
     columns: string[];
-    schema: string | null;
 }>;
 export type ColumnRef = z.infer<typeof ColumnRef>;
 export declare const Ref: z.ZodObject<{
@@ -927,56 +927,56 @@ export declare const Ref: z.ZodObject<{
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     to: z.ZodObject<{
         schema: z.ZodNullable<z.ZodString>;
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "ref";
-    settings: Record<string, string | null>;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null>;
 }, {
     type: "ref";
-    settings: Record<string, string | null> | null;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null> | null;
 }>;
 export type Ref = z.infer<typeof Ref>;
 export declare const DepEndpoint: z.ZodObject<{
@@ -985,14 +985,14 @@ export declare const DepEndpoint: z.ZodObject<{
     column: z.ZodNullable<z.ZodString>;
     parts: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
+    schema: string | null;
     name: string;
     column: string | null;
-    schema: string | null;
     parts: string[];
 }, {
+    schema: string | null;
     name: string;
     column: string | null;
-    schema: string | null;
     parts: string[];
 }>;
 export type DepEndpoint = z.infer<typeof DepEndpoint>;
@@ -1003,14 +1003,14 @@ export declare const DepEdge: z.ZodObject<{
         column: z.ZodNullable<z.ZodString>;
         parts: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     }, {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     }>;
     to: z.ZodObject<{
@@ -1019,45 +1019,45 @@ export declare const DepEdge: z.ZodObject<{
         column: z.ZodNullable<z.ZodString>;
         parts: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     }, {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     }>;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
+    from: {
+        schema: string | null;
+        name: string;
+        column: string | null;
+        parts: string[];
+    };
+    to: {
+        schema: string | null;
+        name: string;
+        column: string | null;
+        parts: string[];
+    };
     settings: Record<string, string | null>;
-    from: {
-        name: string;
-        column: string | null;
-        schema: string | null;
-        parts: string[];
-    };
-    to: {
-        name: string;
-        column: string | null;
-        schema: string | null;
-        parts: string[];
-    };
 }, {
-    settings: Record<string, string | null> | null;
     from: {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     };
     to: {
+        schema: string | null;
         name: string;
         column: string | null;
-        schema: string | null;
         parts: string[];
     };
+    settings: Record<string, string | null> | null;
 }>;
 export type DepEdge = z.infer<typeof DepEdge>;
 export declare const Dep: z.ZodObject<{
@@ -1072,14 +1072,14 @@ export declare const Dep: z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         to: z.ZodObject<{
@@ -1088,85 +1088,85 @@ export declare const Dep: z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
     }, "strip", z.ZodTypeAny, {
+        from: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
+        to: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
         settings: Record<string, string | null>;
-        from: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
-        to: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
     }, {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null>;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null>;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null>;
     }[];
 }, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null> | null;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }[];
 }>;
 export type Dep = z.infer<typeof Dep>;
@@ -1185,12 +1185,12 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     options: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>, Record<string, string>, Record<string, string> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "project";
-    options: Record<string, string>;
     name: string | null;
+    options: Record<string, string>;
 }, {
     type: "project";
-    options: Record<string, string> | null;
     name: string | null;
+    options: Record<string, string> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"note">;
     name: z.ZodString;
@@ -1247,23 +1247,23 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             columns: z.ZodArray<z.ZodString, "many">;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            columns: string[];
             settings: Record<string, string | null>;
-            columns: string[];
         }, {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"checks">;
@@ -1271,23 +1271,23 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             expression: z.ZodString;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            expression: string;
             settings: Record<string, string | null>;
-            expression: string;
         }, {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"records">;
@@ -1296,108 +1296,107 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             kind: z.ZodLiteral<"string">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "string";
+            value: string;
         }, {
-            value: string;
             kind: "string";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"number">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "number";
+            value: string;
         }, {
-            value: string;
             kind: "number";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"boolean">;
             value: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"null">;
             value: z.ZodNull;
         }, "strip", z.ZodTypeAny, {
-            value: null;
             kind: "null";
+            value: null;
         }, {
-            value: null;
             kind: "null";
+            value: null;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"expression">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "expression";
+            value: string;
         }, {
-            value: string;
             kind: "expression";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"identifier">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "identifier";
+            value: string;
         }, {
-            value: string;
             kind: "identifier";
+            value: string;
         }>]>, "many">, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null>;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -1413,43 +1412,43 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null> | null;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -1465,38 +1464,39 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"group">;
     name: z.ZodNullable<z.ZodString>;
@@ -1515,12 +1515,12 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
         name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }>, z.ZodObject<{
         type: z.ZodLiteral<"option">;
         option: z.ZodRecord<z.ZodString, z.ZodString>;
@@ -1535,33 +1535,33 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null>;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null> | null;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"enum">;
     schema: z.ZodNullable<z.ZodString>;
@@ -1590,8 +1590,8 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     }>]>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -1602,8 +1602,8 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     })[];
 }, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -1620,56 +1620,56 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     to: z.ZodObject<{
         schema: z.ZodNullable<z.ZodString>;
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "ref";
-    settings: Record<string, string | null>;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null>;
 }, {
     type: "ref";
-    settings: Record<string, string | null> | null;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"dep">;
     name: z.ZodNullable<z.ZodString>;
@@ -1682,14 +1682,14 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         to: z.ZodObject<{
@@ -1698,85 +1698,85 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
     }, "strip", z.ZodTypeAny, {
+        from: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
+        to: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
         settings: Record<string, string | null>;
-        from: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
-        to: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
     }, {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null>;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null>;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null>;
     }[];
 }, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null> | null;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }[];
 }>, z.ZodObject<{
     type: z.ZodLiteral<"records">;
@@ -1784,56 +1784,56 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
         kind: z.ZodLiteral<"string">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "string";
+        value: string;
     }, {
-        value: string;
         kind: "string";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"number">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "number";
+        value: string;
     }, {
-        value: string;
         kind: "number";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"boolean">;
         value: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"null">;
         value: z.ZodNull;
     }, "strip", z.ZodTypeAny, {
-        value: null;
         kind: "null";
+        value: null;
     }, {
-        value: null;
         kind: "null";
+        value: null;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"expression">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "expression";
+        value: string;
     }, {
-        value: string;
         kind: "expression";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"identifier">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "identifier";
+        value: string;
     }, {
-        value: string;
         kind: "identifier";
+        value: string;
     }>]>, "many">, "many">;
 } & {
     schema: z.ZodNullable<z.ZodString>;
@@ -1841,52 +1841,52 @@ export declare const Entity: z.ZodUnion<[z.ZodObject<{
     columns: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }>]>;
 export type Entity = z.infer<typeof Entity>;
 export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
@@ -1904,12 +1904,12 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     options: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>, Record<string, string>, Record<string, string> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "project";
-    options: Record<string, string>;
     name: string | null;
+    options: Record<string, string>;
 }, {
     type: "project";
-    options: Record<string, string> | null;
     name: string | null;
+    options: Record<string, string> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"note">;
     name: z.ZodString;
@@ -1966,23 +1966,23 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             columns: z.ZodArray<z.ZodString, "many">;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            columns: string[];
             settings: Record<string, string | null>;
-            columns: string[];
         }, {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"checks">;
@@ -1990,23 +1990,23 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             expression: z.ZodString;
             settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
         }, "strip", z.ZodTypeAny, {
+            expression: string;
             settings: Record<string, string | null>;
-            expression: string;
         }, {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     }, {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     }>, z.ZodObject<{
         type: z.ZodLiteral<"records">;
@@ -2015,108 +2015,107 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             kind: z.ZodLiteral<"string">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "string";
+            value: string;
         }, {
-            value: string;
             kind: "string";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"number">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "number";
+            value: string;
         }, {
-            value: string;
             kind: "number";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"boolean">;
             value: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }, {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"null">;
             value: z.ZodNull;
         }, "strip", z.ZodTypeAny, {
-            value: null;
             kind: "null";
+            value: null;
         }, {
-            value: null;
             kind: "null";
+            value: null;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"expression">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "expression";
+            value: string;
         }, {
-            value: string;
             kind: "expression";
+            value: string;
         }>, z.ZodObject<{
             kind: z.ZodLiteral<"identifier">;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             kind: "identifier";
+            value: string;
         }, {
-            value: string;
             kind: "identifier";
+            value: string;
         }>]>, "many">, "many">;
     }, "strip", z.ZodTypeAny, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }, {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     }>]>, "many">;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null>;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -2132,43 +2131,43 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null>;
             columns: string[];
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null>;
             expression: string;
+            settings: Record<string, string | null>;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "table";
-    name: string;
-    settings: Record<string, string | null> | null;
     schema: string | null;
+    name: string;
     alias: string | null;
     items: ({
         type: "comment";
@@ -2184,38 +2183,39 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     } | {
         type: "indices";
         indices: {
-            settings: Record<string, string | null> | null;
             columns: string[];
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "checks";
         checks: {
-            settings: Record<string, string | null> | null;
             expression: string;
+            settings: Record<string, string | null> | null;
         }[];
     } | {
         type: "records";
         columns: string[] | null;
         rows: ({
-            value: string;
             kind: "string";
-        } | {
             value: string;
+        } | {
             kind: "number";
+            value: string;
         } | {
-            value: boolean;
             kind: "boolean";
+            value: boolean;
         } | {
-            value: null;
             kind: "null";
+            value: null;
         } | {
-            value: string;
             kind: "expression";
-        } | {
             value: string;
+        } | {
             kind: "identifier";
+            value: string;
         })[][];
     })[];
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"group">;
     name: z.ZodNullable<z.ZodString>;
@@ -2234,12 +2234,12 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }, {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     }>, z.ZodObject<{
         type: z.ZodLiteral<"option">;
         option: z.ZodRecord<z.ZodString, z.ZodString>;
@@ -2254,33 +2254,33 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null>;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null>;
 }, {
     type: "group";
     name: string | null;
-    settings: Record<string, string | null> | null;
     items: ({
         type: "comment";
         comment: string;
     } | {
         type: "table";
-        name: string;
         schema: string | null;
+        name: string;
     } | {
         type: "option";
         option: Record<string, string>;
     })[];
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"enum">;
     schema: z.ZodNullable<z.ZodString>;
@@ -2309,8 +2309,8 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     }>]>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -2321,8 +2321,8 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     })[];
 }, {
     type: "enum";
-    name: string;
     schema: string | null;
+    name: string;
     items: ({
         type: "comment";
         comment: string;
@@ -2339,56 +2339,56 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     to: z.ZodObject<{
         schema: z.ZodNullable<z.ZodString>;
         name: z.ZodString;
         columns: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }, {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     }>;
     settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
 }, "strip", z.ZodTypeAny, {
     type: "ref";
-    settings: Record<string, string | null>;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null>;
 }, {
     type: "ref";
-    settings: Record<string, string | null> | null;
-    cardinality: "<>" | ">" | "<" | "-";
+    cardinality: "-" | "<" | "<>" | ">";
     from: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
     to: {
+        schema: string | null;
         name: string;
         columns: string[];
-        schema: string | null;
     };
+    settings: Record<string, string | null> | null;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"dep">;
     name: z.ZodNullable<z.ZodString>;
@@ -2401,14 +2401,14 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         to: z.ZodObject<{
@@ -2417,85 +2417,85 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             column: z.ZodNullable<z.ZodString>;
             parts: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }, {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         }>;
         settings: z.ZodEffects<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodNullable<z.ZodString>>>, Record<string, string | null>, Record<string, string | null> | null>;
     }, "strip", z.ZodTypeAny, {
+        from: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
+        to: {
+            schema: string | null;
+            name: string;
+            column: string | null;
+            parts: string[];
+        };
         settings: Record<string, string | null>;
-        from: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
-        to: {
-            name: string;
-            column: string | null;
-            schema: string | null;
-            parts: string[];
-        };
     }, {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null>;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null>;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null>;
     }[];
 }, {
     type: "dep";
-    options: Record<string, string>;
     name: string | null;
     settings: Record<string, string | null> | null;
+    options: Record<string, string>;
     edges: {
-        settings: Record<string, string | null> | null;
         from: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
         to: {
+            schema: string | null;
             name: string;
             column: string | null;
-            schema: string | null;
             parts: string[];
         };
+        settings: Record<string, string | null> | null;
     }[];
 }>, z.ZodObject<{
     type: z.ZodLiteral<"records">;
@@ -2503,56 +2503,56 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         kind: z.ZodLiteral<"string">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "string";
+        value: string;
     }, {
-        value: string;
         kind: "string";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"number">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "number";
+        value: string;
     }, {
-        value: string;
         kind: "number";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"boolean">;
         value: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }, {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"null">;
         value: z.ZodNull;
     }, "strip", z.ZodTypeAny, {
-        value: null;
         kind: "null";
+        value: null;
     }, {
-        value: null;
         kind: "null";
+        value: null;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"expression">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "expression";
+        value: string;
     }, {
-        value: string;
         kind: "expression";
+        value: string;
     }>, z.ZodObject<{
         kind: z.ZodLiteral<"identifier">;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         kind: "identifier";
+        value: string;
     }, {
-        value: string;
         kind: "identifier";
+        value: string;
     }>]>, "many">, "many">;
 } & {
     schema: z.ZodNullable<z.ZodString>;
@@ -2560,52 +2560,52 @@ export declare const Output: z.ZodArray<z.ZodUnion<[z.ZodObject<{
     columns: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }, {
     type: "records";
-    name: string;
-    columns: string[];
     rows: ({
-        value: string;
         kind: "string";
-    } | {
         value: string;
+    } | {
         kind: "number";
+        value: string;
     } | {
-        value: boolean;
         kind: "boolean";
+        value: boolean;
     } | {
-        value: null;
         kind: "null";
+        value: null;
     } | {
-        value: string;
         kind: "expression";
-    } | {
         value: string;
+    } | {
         kind: "identifier";
+        value: string;
     })[][];
     schema: string | null;
+    name: string;
+    columns: string[];
 }>]>, "many">;
 export type Output = z.infer<typeof Output>;
 export {};
